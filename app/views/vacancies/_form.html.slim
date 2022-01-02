@@ -1,0 +1,41 @@
+- if @vacancy&.errors.present?
+  = render "shared/errors", resource: @vacancy
+
+= form_with model: vacancy = @vacancy || Vacancy.new, url: vacancies_path, local: true do |f|
+  = f.label :title
+  br
+  = f.text_field :title, value: vacancy.title
+  br
+
+  = f.label :salary
+  br
+  = f.number_field :salary, value: vacancy.salary
+  br
+
+  = f.label :phone_number
+  br
+  = f.text_field :phone_number, value: vacancy.phone_number
+  br
+
+  = f.label :email
+  br
+  = f.text_field :email, value: vacancy.email
+  br
+
+  = f.label :expiration_date
+  br
+  = f.date_field :expiration_date, value: vacancy.expiration_date
+  br
+
+  h3 Skills
+  ul#skills
+    - if vacancy.skills.present?
+      - vacancy.skills.each do |skill|
+        li = skill.name
+
+  = text_field_tag :skill
+  = button_tag "Add skill", id: "add_skill"
+    
+  #search_results
+
+  = f.submit

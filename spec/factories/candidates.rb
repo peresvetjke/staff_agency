@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :candidate do
-    after(:build) { |candidate| candidate.skills.push(create(:skill)) }
-
     name        { "Петр" }
     surname     { "Петров" }
     middle_name { "Петрович" }
@@ -9,5 +7,6 @@ FactoryBot.define do
     status { 1 }
     phone_number { "7776665544" }
     email { "mail@example.com" }
+    skill_list { ["good", "bad", "evil"] }
   end
 end

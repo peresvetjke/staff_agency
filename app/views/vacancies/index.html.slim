@@ -1,0 +1,10 @@
+h1 Vacancies list
+
+= link_to "Add vacancy", new_vacancy_path
+br
+br
+
+-if @vacancies.present?
+  = render partial: "vacancies"
+-else
+  No vacancies yet

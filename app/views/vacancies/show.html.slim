@@ -1,0 +1,24 @@
+h1= @vacancy.title
+
+strong Salary: 
+= @vacancy.salary
+br
+strong Phone number: 
+= @vacancy.contact_number
+br
+strong Email: 
+= @vacancy.email
+br
+strong Created at: 
+= @vacancy.created_at
+br
+strong Expiration date: 
+= @vacancy.expiration_date
+br
+br
+strong Skills: 
+= @vacancy.skill_list.join(", ")
+br
+br
+
+= link_to "Back to vacancies", vacancies_path
