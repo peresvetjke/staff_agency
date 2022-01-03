@@ -5,3 +5,6 @@ tr
   td= vacancy.email
   td= vacancy.created_at
   td= vacancy.expiration_date
+  td
+    .me-1 = link_to "Edit", edit_vacancy_path(vacancy)
+    = link_to "Delete", vacancy_path(vacancy), method: :delete, data: {confirm: "Are you sure?"}

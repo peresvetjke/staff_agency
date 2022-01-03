@@ -1,8 +1,10 @@
-
   - if @vacancy&.errors.present?
     = render "shared/errors", resource: @vacancy
 
-  = form_with model: vacancy = @vacancy || Vacancy.new, url: vacancies_path, local: true do |f|
+  = form_with model: vacancy = @vacancy || Vacancy.new, 
+                url: @vacancy.present? ? vacancy_path(@vacancy) : vacancies_path, 
+              local: true do |f|
+
     .form-row
       = f.label :title
       = f.text_field :title, value: vacancy.title
@@ -24,7 +26,7 @@
       = f.date_field :expiration_date, value: vacancy.expiration_date
 
     h3 Skills
-    ul#skills
+    ul#skills *{data: {klass: "candidate"}}
       - if vacancy.skills.present?
         - vacancy.skills.each do |skill|
           li = skill.name

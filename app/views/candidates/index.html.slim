@@ -1,0 +1,10 @@
+h1 Candidates list
+
+= link_to "New candidate", new_candidate_path
+br
+br
+
+-if @candidates.present?
+  = render partial: "candidates"
+-else
+  No candidates yet

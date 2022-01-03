@@ -5,7 +5,7 @@ class AddCandidates < ActiveRecord::Migration[6.0]
       t.string :surname
       t.string :middle_name
       t.integer :desired_salary
-      t.integer :status
+      t.integer :status, default: 0
       t.string :phone_number
       t.string :email
 

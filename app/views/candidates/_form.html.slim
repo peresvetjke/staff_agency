@@ -1,0 +1,44 @@
+  - if @candidate&.errors.present?
+    = render "shared/errors", resource: @candidate
+
+  = form_with model: candidate = @candidate || Candidate.new, 
+                url: candidate.persisted? ? candidate_path(@candidate) : candidates_path, 
+              local: true do |f|
+
+    .form-row
+      = f.label :surname
+      = f.text_field :surname, value: candidate.surname
+
+    .form-row
+      = f.label :name
+      = f.text_field :name, value: candidate.name
+
+    .form-row
+      = f.label :middle_name
+      = f.text_field :middle_name, value: candidate.middle_name
+
+    .form-row
+      = f.label :desired_salary
+      = f.number_field :desired_salary, value: candidate.desired_salary
+
+    .form-row
+      = f.label :phone_number
+      = f.text_field :phone_number, value: candidate.phone_number
+
+    .form-row
+      = f.label :email
+      = f.text_field :email, value: candidate.email
+
+    h3 Skills
+    ul#skills *{data: {klass: "candidate"}}
+      - if candidate.skills.present?
+        - candidate.skills.each do |skill|
+          li = skill.name
+
+    .form-row
+      = text_field_tag :skill, nil, autocomplete: "off"
+      = button_tag "Add skill", id: "add_skill", class: "btn btn-dark btn-sm ms-3"
+      ul#search_results
+
+    .form-row
+      = f.submit

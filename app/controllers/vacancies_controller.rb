@@ -1,5 +1,5 @@
 class VacanciesController < ApplicationController
-  before_action :find_vacancy, only: %i[show]
+  before_action :find_vacancy, only: %i[show edit update destroy]
 
   def index
     respond_with @vacancies = Vacancy.all
@@ -14,6 +14,18 @@ class VacanciesController < ApplicationController
 
   def create
     respond_with(@vacancy = Vacancy.create(vacancy_params))
+  end
+
+  def edit
+  end
+
+  def update
+    @vacancy.update(vacancy_params)
+    respond_with(@vacancy)
+  end
+
+  def destroy
+    respond_with(@vacancy.destroy)
   end
 
   private

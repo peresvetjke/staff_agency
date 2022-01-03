@@ -72,7 +72,7 @@ function addHiddenField(list) {
   const hiddenField = document.createElement('input')
   hiddenField.setAttribute("type", "hidden");
   hiddenField.setAttribute("value", tagsArray(list));
-  hiddenField.name = "vacancy[skill_list]"
+  hiddenField.name = `${list.dataset.klass}[skill_list]`
   list.appendChild(hiddenField)
 }
 

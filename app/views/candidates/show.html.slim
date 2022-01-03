@@ -1,0 +1,19 @@
+h1= @candidate.full_name
+
+strong Desired_salary: 
+= @candidate.desired_salary
+br
+strong Phone number: 
+= @candidate.contact_number
+br
+strong Email: 
+= @candidate.email
+br
+br
+strong Skills: 
+= @candidate.skill_list.join(", ")
+br
+br
+
+.mt-2 = link_to "Edit", edit_candidate_path(@candidate)
+.mt-3 = link_to "Back to candidates", candidates_path

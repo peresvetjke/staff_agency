@@ -1,10 +1,9 @@
 class Candidate < ApplicationRecord
   include Contactable
-  # include Skillable
-
   acts_as_taggable_on :skills
+  enum status: [ :active_search, :employed ]
   
-  validates :status, :desired_salary, :name, :middle_name, :surname, :skill_list, presence: true
+  validates :desired_salary, :name, :middle_name, :surname, :skill_list, presence: true
   validates :name, :middle_name, :surname, format: { with: /[а-я]+/i,
                                                      message: "only cyrillic letters without spaces" }
 
