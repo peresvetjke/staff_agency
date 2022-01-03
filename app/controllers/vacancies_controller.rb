@@ -1,5 +1,5 @@
 class VacanciesController < ApplicationController
-  before_action :find_vacancy, only: %i[show edit update destroy]
+  before_action :find_vacancy, only: %i[show edit update destroy candidates]
 
   def index
     respond_with @vacancies = Vacancy.all
@@ -26,6 +26,13 @@ class VacanciesController < ApplicationController
 
   def destroy
     respond_with(@vacancy.destroy)
+  end
+
+  def candidates
+    full_match = Candidate.tagged_with(@vacancy.skill_list, :match_all => true)
+    partial_match = Candidate.tagged_with(@vacancy.skill_list, :any => true) - full_match
+    
+    @candidates = { full_match: full_match, partial_match: partial_match }
   end
 
   private

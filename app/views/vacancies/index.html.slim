@@ -5,6 +5,6 @@ br
 br
 
 -if @vacancies.present?
-  = render partial: "vacancies"
+  = render partial: "vacancies", locals: { vacancies: @vacancies }
 -else
   No vacancies yet

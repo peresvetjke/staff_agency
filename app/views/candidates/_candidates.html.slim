@@ -7,4 +7,5 @@ table.table.bordered.candidates
       td Email
       td Actions
   tbody
-    = render @candidates
+    - candidates.each do |candidate|
+      = render "candidates/candidate", candidate: candidate

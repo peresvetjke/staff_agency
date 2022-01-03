@@ -9,4 +9,5 @@ table.table.bordered.vacancies
       td Expiration date
       td Actions
   tbody
-    = render @vacancies
+    - vacancies.each do |vacancy|
+      = render "vacancies/vacancy", vacancy: vacancy

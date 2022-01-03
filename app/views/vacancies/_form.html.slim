@@ -26,7 +26,7 @@
       = f.date_field :expiration_date, value: vacancy.expiration_date
 
     h3 Skills
-    ul#skills *{data: {klass: "candidate"}}
+    ul#skills *{data: {klass: "vacancy"}}
       - if vacancy.skills.present?
         - vacancy.skills.each do |skill|
           li = skill.name

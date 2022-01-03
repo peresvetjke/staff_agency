@@ -1,0 +1,11 @@
+h2 Full-match
+- if @candidates[:full_match].present?
+  = render partial: "candidates/candidates", locals: { candidates: @candidates[:full_match] }
+- else
+  No candidates.
+
+h2 Partial-match
+- if @candidates[:partial_match].present?
+  = render partial: "candidates/candidates", locals: { candidates: @candidates[:partial_match] }
+- else
+  No candidates.

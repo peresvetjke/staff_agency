@@ -1,0 +1,11 @@
+h2 Full-match
+- if @vacancies[:full_match].present?
+  = render partial: "vacancies/vacancies", locals: { vacancies: @vacancies[:full_match] }
+- else
+  No vacancies.
+
+h2 Partial-match
+- if @vacancies[:partial_match].present?
+  = render partial: "vacancies/vacancies", locals: { vacancies: @vacancies[:partial_match] }
+- else
+  No vacancies.
