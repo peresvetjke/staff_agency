@@ -33,6 +33,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'slim-rails'
 gem 'acts-as-taggable-on'
 gem 'responders'
+gem 'bootstrap', '~> 5.1.3'
+gem 'mysql2',          '~> 0.4'
+gem 'thinking-sphinx', '~> 5.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

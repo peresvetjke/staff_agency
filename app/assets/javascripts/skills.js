@@ -8,53 +8,64 @@ function ready() {
     var resultsList = $("#search_results")[0]
     var request = new XMLHttpRequest();
 
+    // add new tag
+    addSkillButton.addEventListener("click", (e) => {
+      e.preventDefault()
+
+      addNewTag(skillInput.value, skillInput, skillsList, resultsList)
+    })
+
+    // seek for tags
     skillInput.addEventListener("input", (e) => { 
       $(resultsList).empty()
-      var url = "/skills/search?title=" + e.target.value
+      var url = "/skills/search?name=" + e.target.value
       request.open('GET', url)
       request.send()
     })
 
-    addSkillButton.addEventListener("click", (e) => {
-      e.preventDefault()
-      appendTag(skillsList, skillInput)
+    // display results
+    request.addEventListener("readystatechange", () => { 
+      if (request.readyState === 4 && request.status === 200) { 
+        var results = JSON.parse(request.responseText)
+        for (i = 0; i < results.length; i++) {
+          if (tagsArray(skillsList).indexOf(results[i].name) == -1) {
+            var newTag = document.createElement("li");
+            newTag.appendChild(document.createTextNode(results[i].name));
+            resultsList.appendChild(newTag)
+          }
+        }
+      }
     })
 
+    $(resultsList).on("click", "li", (e) => {
+      addNewTag(e.target.textContent, skillInput, skillsList, resultsList)
+    })
+
+    // remove tag
+    $(skillsList).on("click", "li", (e) => {
+      $(e.target).remove()
+    })
+
+    // insert skill_list before submit
     submitButton.addEventListener("click", (e) => {
       addHiddenField(skillsList)
     })
-
-    request.addEventListener("readystatechange", () => { 
-      if (request.readyState === 4 && request.status === 200) { listResults(resultsList, request.responseText) }
-    })
   }
 }
 
-function searchTag(resultsList, e) {
-
-}
-
-function listResults(resultsList, response) {
-  var results = JSON.parse(response)
-  for (i = 0; i < results.length; i++) { 
-    var newTag = document.createElement("li");
-    newTag.appendChild(document.createTextNode(results[i].title));
-    resultsList.appendChild(newTag)
-  }
-}
-
-function appendTag(list, input) {
-  if (input.value == "") { alert("Can't be blank!") } 
-    else if ( tagsArray(list).indexOf(input.value) >= 0 ) { alert(`Already in the list (${input.value})!`) } 
-      else {
-        // append new tag
-        var newTag = document.createElement("li");
-        newTag.appendChild(document.createTextNode(input.value));
-        list.appendChild(newTag)
-      
-        // clear input
-        input.value = ''
-      }
+function addNewTag(value, skillInput, skillsList, resultsList) {
+  if (value == "") { alert("Can't be blank!") } 
+  else if ( tagsArray(skillsList).indexOf(value) >= 0 ) { alert(`Already in the list (${value})!`) } 
+    else {
+      // append new tag
+      var newTag = document.createElement("li");
+      newTag.appendChild(document.createTextNode(value));
+      skillsList.appendChild(newTag)
+    
+      // clear input and results
+      skillInput.value = ''
+      $(resultsList).empty()
+    }
 }
 
 function addHiddenField(list) {

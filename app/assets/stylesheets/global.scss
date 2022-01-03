@@ -1,0 +1,23 @@
+.form-row > label {
+  @extend .col-form-label.col-sm-2.text-truncate;
+}
+
+input[type="submit"] {
+  @extend .btn.btn-primary.mt-3;
+}
+
+ul#skills > li {
+  cursor: pointer;
+}
+
+ul#search_results {
+  list-style-type: none;
+  z-index: 1;
+  position:relative;
+}
+
+ul#search_results > li {
+  background: #FFFFFF;
+  cursor: pointer;
+  width: 280px;
+}
