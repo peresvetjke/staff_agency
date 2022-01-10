@@ -6,4 +6,6 @@ class Vacancy < ApplicationRecord
   acts_as_taggable_on :skills
 
   validates :title, :expiration_date, :salary, :skill_list, presence: true
+
+  ThinkingSphinx::Callbacks.append(self, :tag, :behaviours => [:real_time], :path => [:skills])
 end

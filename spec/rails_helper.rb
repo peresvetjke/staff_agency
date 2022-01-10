@@ -37,6 +37,12 @@ RSpec.configure do |config|
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
 
+  Capybara.javascript_driver = :selenium_chrome_headless
+
+  config.before :each do |example|
+    ThinkingSphinx::Configuration.instance.settings['real_time_callbacks'] = false
+  end
+  
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

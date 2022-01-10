@@ -4,7 +4,6 @@ RSpec.describe Vacancy, type: :model do
   describe 'validations' do
     let!(:vacancy) { create(:vacancy) }
 
-    # it_behaves_like "skillable"
     it_behaves_like "contactable" do
       let(:contactable) { :vacancy }
     end

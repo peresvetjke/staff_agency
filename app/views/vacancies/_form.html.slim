@@ -2,7 +2,7 @@
     = render "shared/errors", resource: @vacancy
 
   = form_with model: vacancy = @vacancy || Vacancy.new, 
-                url: @vacancy.present? ? vacancy_path(@vacancy) : vacancies_path, 
+                url: vacancy.persisted? ? vacancy_path(@vacancy) : vacancies_path,
               local: true do |f|
 
     .form-row
