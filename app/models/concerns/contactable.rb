@@ -12,10 +12,7 @@ module Contactable
 
     def contact_number
       n = phone_number
-
-      unless n.blank?
-        "+7 (#{n[0..2]}) #{n[3..5]}-#{n[6..7]}-#{n[8..9]}"
-      end
+      "+7 (#{n[0..2]}) #{n[3..5]}-#{n[6..7]}-#{n[8..9]}" unless n.blank?
     end
   end
 end
